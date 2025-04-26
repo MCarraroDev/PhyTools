@@ -4,7 +4,7 @@ const toolsList = [
         title: 'Calcolatore Resistenze',
         icon: 'Ω',
         description: 'Calcola il valore di una resistenza in base ai colori delle bande',
-        path: '/tools/resistor-calculator.html'
+        path: 'tools/resistor-calculator.html'
     },
     {
         id: '',
