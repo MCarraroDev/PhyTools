@@ -19,8 +19,8 @@ function App() {
     return (
         <div>
             <header className="main-header">
-                <img src="assets/logo-main.png" alt="Fisica MultiTool Logo" />
-                <h1>Fisica MultiTool</h1>
+                <img src="assets/logo-main.png" alt="Fisica PhyTools Logo" />
+                <h1>PhyTools</h1>
             </header>
             <div className="tools-grid">
                 {toolsList.map(tool => (

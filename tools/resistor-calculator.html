@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calcolatore Resistenze - Fisica MultiTool</title>
+    <title>Calcolatore Resistenze - PhyTools</title>
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
@@ -92,42 +92,42 @@
     <div id="root"></div>
     <script type="text/babel">
         function ResistorCalculator() {
-            const [bands, setBands] = React.useState(['marrone', 'nero', 'rosso', 'oro']);
+            const [bands, setBands] = React.useState(['Marrone', 'Nero', 'Rosso', 'Oro']);
             const [result, setResult] = React.useState('');
 
             const colorValues = {
-                nero: 0,
-                marrone: 1,
-                rosso: 2,
-                arancione: 3,
-                giallo: 4,
-                verde: 5,
-                blu: 6,
-                viola: 7,
-                grigio: 8,
-                bianco: 9
+                Nero: 0,
+                Marrone: 1,
+                Rosso: 2,
+                Arancione: 3,
+                Giallo: 4,
+                Verde: 5,
+                Blu: 6,
+                Viola: 7,
+                Grigio: 8,
+                Bianco: 9
             };
 
             const tolerances = {
-                marrone: '±1%',
-                rosso: '±2%',
-                oro: '±5%',
-                argento: '±10%'
+                Marrone: '±1%',
+                Rosso: '±2%',
+                Oro: '±5%',
+                Argento: '±10%'
             };
 
             const colorEmojis = {
-                nero: '⚫',
-                marrone: '🟫',
-                rosso: '🔴',
-                arancione: '🟠',
-                giallo: '🟡',
-                verde: '🟢',
-                blu: '🔵',
-                viola: '🟣',
-                grigio: '⚪',
-                bianco: '⬜',
-                oro: '🟨',
-                argento: '⬜'
+                Nero: '⚫',
+                Marrone: '🟫',
+                Rosso: '🔴',
+                Arancione: '🟠',
+                Giallo: '🟡',
+                Verde: '🟢',
+                Blu: '🔵',
+                Viola: '🟣',
+                Grigio: '⚪',
+                Bianco: '⬜',
+                Oro: '🟨',
+                Argento: '⬜'
             };
 
             const calculateResistance = () => {
@@ -177,8 +177,8 @@
             return (
                 <div>
                     <header className="main-header">
-                        <img src="../assets/logo-main.png" alt="Fisica MultiTool Logo" />
-                        <h1>Fisica MultiTool</h1>
+                        <img src="../assets/logo-main.png" alt="Fisica PhyTools Logo" />
+                        <h1>PhyTools</h1>
                     </header>
                     <ResistorCalculator />
                 </div>

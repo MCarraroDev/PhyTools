@@ -1,4 +1,4 @@
-# Fisica MultiTool
+# PhyTools
 
 Una collezione di strumenti interattivi per il calcolo e la visualizzazione di concetti di fisica.
 
