@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcolatore Resistenze - Fisica MultiTool</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .resistor-calculator {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 600px;
+            margin: 20px auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .resistor-image {
+            width: 100%;
+            max-width: 400px;
+            margin: 20px auto;
+            display: block;
+        }
+
+        .color-selectors-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .color-selector {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: #3d3d3d;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .color-selector label {
+            min-width: 120px;
+            font-weight: bold;
+            font-family: Arial, sans-serif;
+        }
+
+        select {
+            flex: 1;
+            padding: 10px;
+            border-radius: 5px;
+            background: #2d2d2d;
+            color: white;
+            border: 1px solid #4a4a4a;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+        }
+
+        .color-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        select:hover {
+            background: #454545;
+        }
+
+        .result {
+            text-align: center;
+            font-size: 28px;
+            margin-top: 30px;
+            padding: 20px;
+            background: linear-gradient(145deg, #2d2d2d, #3d3d3d);
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--accent-color);
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        function ResistorCalculator() {
+            const [bands, setBands] = React.useState(['marrone', 'nero', 'rosso', 'oro']);
+            const [result, setResult] = React.useState('');
+
+            const colorValues = {
+                nero: 0,
+                marrone: 1,
+                rosso: 2,
+                arancione: 3,
+                giallo: 4,
+                verde: 5,
+                blu: 6,
+                viola: 7,
+                grigio: 8,
+                bianco: 9
+            };
+
+            const tolerances = {
+                marrone: '±1%',
+                rosso: '±2%',
+                oro: '±5%',
+                argento: '±10%'
+            };
+
+            const colorEmojis = {
+                nero: '⚫',
+                marrone: '🟫',
+                rosso: '🔴',
+                arancione: '🟠',
+                giallo: '🟡',
+                verde: '🟢',
+                blu: '🔵',
+                viola: '🟣',
+                grigio: '⚪',
+                bianco: '⬜',
+                oro: '🟨',
+                argento: '⬜'
+            };
+
+            const calculateResistance = () => {
+                const value = (colorValues[bands[0]] * 10 + colorValues[bands[1]]) * Math.pow(10, colorValues[bands[2]]);
+                setResult(`${value}Ω ${tolerances[bands[3]]}`);
+            };
+
+            React.useEffect(() => {
+                calculateResistance();
+            }, [bands]);
+
+            return (
+                <div className="resistor-calculator">
+                    <a href="../index.html" className="back-button">← Indietro</a>
+                    <h2>Calcolatore Resistenze</h2>
+                    <img src="../assets/color-code.png" alt="Color code diagram" className="resistor-image" />
+                    <div className="color-selectors-container">
+                        {bands.map((color, index) => (
+                            <div key={index} className="color-selector">
+                                <label>{index === 0 ? "Prima banda" : 
+                                       index === 1 ? "Seconda banda" : 
+                                       index === 2 ? "Moltiplicatore" : 
+                                       "Tolleranza"}:</label>
+                                <select 
+                                    value={color}
+                                    onChange={(e) => {
+                                        const newBands = [...bands];
+                                        newBands[index] = e.target.value;
+                                        setBands(newBands);
+                                    }}
+                                >
+                                    {Object.keys(index === 3 ? tolerances : colorValues).map(color => (
+                                        <option key={color} value={color}>
+                                            {colorEmojis[color]} {color}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                        ))}
+                    </div>
+                    <div className="result">{result}</div>
+                </div>
+            );
+        }
+
+        function App() {
+            return (
+                <div>
+                    <header className="main-header">
+                        <img src="../assets/logo-main.png" alt="Fisica MultiTool Logo" />
+                        <h1>Fisica MultiTool</h1>
+                    </header>
+                    <ResistorCalculator />
+                </div>
+            );
+        }
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
